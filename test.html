@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="us">
+<head>
+	<meta charset="utf-8">
+	<title>Biggest Soundboard in the Universe</title>
+	<link href="css/jquery-ui.css" rel="stylesheet"/>
+	<link href="css/jquery-ui.theme.css" rel="stylesheet"/>
+	<link href="css/jquery-ui.structure.css" rel="stylesheet"/>
+	<link href="css/base.css" rel="stylesheet"/>
+	<script type="text/javascript" src="script/jquery-2.2.0.js"></script>
+	<script type="text/javascript" src="script/jquery-ui.js"></script>
+  <script>
+  $(document).ready(function () {
+    //$("#wordTypeSelect").hide();
+    //$("#toneTypeSelect").hide();
+
+  	$("#speakerSelect").change(function(){
+  		$("#wordTypeSelect").removeAttr("disabled");
+  	});
+    $("#wordTypeSelect").change(function(){
+      $("#toneTypeSelect").removeAttr("disabled");
+    });
+		$("#toneTypeSelect").change(function(){
+			getAllSounds();
+    });
+
+		function getAllSounds(){
+			for(i = 0; i < 10; i++){
+				var newButton = createButton("newButton"+i);
+				newButton.value = "sound-" + i;
+				newButton.textContent ="Click to play sound: " + i;
+				$(".soundArea").append(newButton);
+			}
+		}
+
+		function createButton(id){
+			var soundButton = document.createElement("button");
+			soundButton.setAttribute("id","button-"+id);
+			soundButton.setAttribute("class","soundButton");
+			return soundButton;
+		}
+  });
+  </script>
+</head>
+<style>
+.tab{
+  border: 1px solid black;
+  height: 600px;
+  width: 250px;
+  border-width: 7px;
+  border-radius: 20px;
+  border-color: black;
+  color: black;
+  background: orange;
+  padding: 10px;
+}
+.selector{
+  border: 2px solid;
+  border-radius: 20px;
+  background-color: lightpink;
+}
+.soundButton{
+	width: 200px;
+	height: 35px;
+	border: 1px solid;
+	border-radius: 20px;
+	margin-top: 5px;
+	padding: 5px;
+}
+</style>
+<body>
+<div class="header">
+<h1>Biggest Soundboard in the Universe</h2>
+</div>
+<h2 class="demoHeaders">Categories</h2>
+
+<div class="tab">
+<select class="selector" id="speakerSelect">
+  <option disabled selected>Please Select:</option>
+  <option value="Maddox">Maddox</option>
+  <option value="Sean">Sean</option>
+  <option value="Dick">Dick</option>
+  <option value="Asterios">Asterios</option>
+  <option value="TimChainz">TimChainz</option>
+  <option value="PeachSaliva">PeachSaliva</option>
+</select>
+  <div>
+  <select class="selector" id="wordTypeSelect" disabled=true>
+    <option disabled selected>Please Select:</option>
+    <option value="Noun">Noun</option>
+    <option value="Verb">Verb</option>
+    <option value="Adjective">Adjective</option>
+    <option value="Adverb">Adverb</option>
+    <option value="Pronoun">Pronoun</option>
+    <option value="Preposition">Preposition</option>
+    <option value="Conjunction">Conjunction</option>
+    <option value="Determiner">Determiner</option>
+    <option value="Exclamation">Exclamation</option>
+  </select>
+    <div>
+      <select class="selector" id="toneTypeSelect" disabled=true>
+        <option disabled selected>Please Select:</option>
+        <option value="Sarcastic">Sarcastic</option>
+        <option value="Serious">Serious</option>
+        <option value="Sympathetic">Sympathetic</option>
+        <option value="Irreverent">Irreverent</option>
+        <option value="Playful">Playful</option>
+        <option value="Formal">Formal</option>
+      </select>
+    </div>
+		<div id="soundArea" class="soundArea">
+
+		</div>
+</div>
+</div>
+</body>
+</html>
