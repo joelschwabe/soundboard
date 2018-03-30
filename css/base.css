@@ -48,12 +48,15 @@ select {
 .firstSubCat{
 
 }
+ul{
+ 	list-style-type: none;
+ 	-webkit-padding-start: 0 !important;
+ }
 .secondSubCat{
 
 }
 .spanButton{
 	border: 4px outset orange;
-	margin-top: 5px;
 	font-weight: bold;
 	padding: 8px;
 	width: 25%;
