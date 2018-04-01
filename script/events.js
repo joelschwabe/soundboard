@@ -43,71 +43,12 @@ $(document).ready(function () {
 	}
 
 
-	$("#m-pla").click(function(){
-		A_Plastic.currentTime = 0;
-		A_Plastic.play(0);
-		}
-	)
-	$("#m-hor").click(function(){
-		A_Horiscopes.currentTime = 0;
-		A_Horiscopes.play(0);
-		}
-	)
-	$("#m-smo").click(function(){
-		A_Smoothies.currentTime = 0;
-		A_Smoothies.play(0);
-		}
-	)
-	$("#m-hap").click(function(){
-		A_HappyMeal.currentTime = 0;
-		A_HappyMeal.play(0);
-		}
-	)
-	$("#m-10").click(function(){
-		A_MTen.currentTime = 0;
-		A_MTen.play(0);
-		}
-	)
-	$("#m-16").click(function(){
-		A_Sixteen.currentTime = 0;
-		A_Sixteen.play(0);
-		}
-	)
-	$("#m-30").click(function(){
-		A_MThirty.currentTime = 0;
-		A_MThirty.play(0);
-		}
-	)
-	$("#m-49").click(function(){
-		A_FoutyNine.currentTime = 0;
-		A_FoutyNine.play(0);
-		}
-	)
-	$("#m-shi").click(function(){
-		A_ShitPro.currentTime = 0;
-		A_ShitPro.play(0);
-		}
-	)
-	$("#m-hom").click(function(){
-		A_Homeless.currentTime = 0;
-		A_Homeless.play(0);
-		}
-	)
-	$("#m-was").click(function(){
-		A_WasteFood.currentTime = 0;
-		A_WasteFood.play(0);
-		}
-	)
-	$("#A_LockedOut").click(function(){
-		A_LockedOut.play();
-		}
-	)
-
 	function setClickEvents(){
 		$(".newPanelButton").unbind('click');
 		$(".rightPanelButton").unbind('click');
 		$(".leftPanelButton").unbind('click');
 		$(".closePanelButton").unbind('click');
+		$(".spanButton").unbind('click');
 
 		$(".newPanelButton").click(function(){
 				var rowField = $("#rowField");
@@ -148,9 +89,73 @@ $(document).ready(function () {
 		);
 
 		$(".closePanelButton").click(function(){
-				this.parentElement.parentElement.remove();
+				var panelNum = rowField.children().length;
+				if(panelNum >0){
+					this.parentElement.parentElement.remove();
+				}
 			}
 		);
+
+		//audio, will be done programatically later
+		$(".m-pla").click(function(){
+			A_Plastic.currentTime = 0;
+			A_Plastic.play(0);
+			}
+		)
+		$(".m-hor").click(function(){
+			A_Horiscopes.currentTime = 0;
+			A_Horiscopes.play(0);
+			}
+		)
+		$(".m-smo").click(function(){
+			A_Smoothies.currentTime = 0;
+			A_Smoothies.play(0);
+			}
+		)
+		$(".m-hap").click(function(){
+			A_HappyMeal.currentTime = 0;
+			A_HappyMeal.play(0);
+			}
+		)
+		$(".m-10").click(function(){
+			A_MTen.currentTime = 0;
+			A_MTen.play(0);
+			}
+		)
+		$(".m-16").click(function(){
+			A_Sixteen.currentTime = 0;
+			A_Sixteen.play(0);
+			}
+		)
+		$(".m-30").click(function(){
+			A_MThirty.currentTime = 0;
+			A_MThirty.play(0);
+			}
+		)
+		$(".m-49").click(function(){
+			A_FoutyNine.currentTime = 0;
+			A_FoutyNine.play(0);
+			}
+		)
+		$(".m-shi").click(function(){
+			A_ShitPro.currentTime = 0;
+			A_ShitPro.play(0);
+			}
+		)
+		$(".m-hom").click(function(){
+			A_Homeless.currentTime = 0;
+			A_Homeless.play(0);
+			}
+		)
+		$(".m-was").click(function(){
+			A_WasteFood.currentTime = 0;
+			A_WasteFood.play(0);
+			}
+		)
+		$(".A_LockedOut").click(function(){
+			A_LockedOut.play();
+			}
+		)
 
 	}
 
@@ -159,8 +164,8 @@ $(document).ready(function () {
 		$( ".secondSubCat" ).accordion({heightStyle: 'panel',collapsible: true,heightStyle: "content"});
 	}
 
-
-
-	setClickEvents();
+	var newPanel = createPanel("1");
+	rowField.append(newPanel);
 	makeAccordians();
+	setClickEvents();
 });
