@@ -23,17 +23,25 @@ $(document).ready(function () {
 		A_WasteFood = new Audio('audio/maddox-91-wastingFood.mp3'),
 		A_LockedOut = new Audio('audio/maddox-77-momLockedMeOut.mp3')
   ;
-	$(function() {
-		$( ".firstSubCat" ).accordion({heightStyle: 'panel',collapsible: true,heightStyle: "content"});
-		$( ".secondSubCat" ).accordion({heightStyle: 'panel',collapsible: true,heightStyle: "content"});
-	});
 
-	var windowWidth = $(window).width();
-	var windowHeight = $(window).height();
-	//$( ".sideBarContainer" ).css("width" ,function( ) { return  "" + windowWidth * .2 + "px";});
-	//$( ".sideBarContainer" ).css("height" ,function( ) { return  "" + windowHeight* .8 + "px";});
-	//$( ".firstSubCat" ).css("width" ,function( ) { return "" + windowWidth * .15 + "px";});
-	//$( ".firstSubCat" ).css("height" ,function( ) { return "" + windowHeight * .15 + "px";});
+
+	function scrollHorizontally(e) {
+			e = window.event || e;
+			var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+			document.documentElement.scrollLeft -= (delta*40); // Multiplied by 40
+			document.body.scrollLeft -= (delta*40); // Multiplied by 40
+			e.preventDefault();
+	}
+	if (window.addEventListener) {
+			// IE9, Chrome, Safari, Opera
+			window.addEventListener("mousewheel", scrollHorizontally, false);
+			// Firefox
+			window.addEventListener("DOMMouseScroll", scrollHorizontally, false);
+	} else {
+			// IE 6/7/8
+			window.attachEvent("onmousewheel", scrollHorizontally);
+	}
+
 
 	$("#m-pla").click(function(){
 		A_Plastic.currentTime = 0;
@@ -94,4 +102,63 @@ $(document).ready(function () {
 		A_LockedOut.play();
 		}
 	)
+
+	function setClickEvents(){
+		$(".newPanelButton").unbind('click');
+		$(".rightPanelButton").unbind('click');
+		$(".leftPanelButton").unbind('click');
+		$(".closePanelButton").unbind('click');
+
+		$(".newPanelButton").click(function(){
+				var rowField = $("#rowField");
+				var panelNum = rowField.children().length;
+				var newPanel = createPanel(panelNum  + 1);
+				rowField.append(newPanel);
+				makeAccordians();
+				setClickEvents();
+			}
+		);
+
+		$(".rightPanelButton").click(function(){
+				var rowField = $("#rowField");
+			  var idNum = this.id.split("-")[1];
+				var thisPanel = $("#panel-"+idNum);
+				var nextPanel = thisPanel.next();
+
+				var thisCopy = thisPanel.clone(true,true);
+				nextPanel.after(thisCopy);
+				thisPanel.remove();
+				setClickEvents();
+			}
+		);
+
+		$(".leftPanelButton").click(function(){
+				var rowField = $("#rowField");
+				var idNum = this.id.split("-")[1];
+				var thisPanel = $("#panel-"+idNum);
+				var prevPanel = thisPanel.prev();
+
+				var thisCopy = thisPanel.clone(true,true);
+				prevPanel.before(thisCopy);
+				thisPanel.remove();
+				setClickEvents();
+			}
+		);
+
+		$(".closePanelButton").click(function(){
+				this.parentElement.parentElement.remove();
+			}
+		);
+
+	}
+
+	function makeAccordians(){
+		$( ".firstSubCat" ).accordion({heightStyle: 'panel',collapsible: true,heightStyle: "content"});
+		$( ".secondSubCat" ).accordion({heightStyle: 'panel',collapsible: true,heightStyle: "content"});
+	}
+
+
+
+	setClickEvents();
+	makeAccordians();
 });

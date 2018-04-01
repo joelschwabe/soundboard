@@ -9,22 +9,27 @@
 	<link href="css/base.css" rel="stylesheet"/>
 	<script type="text/javascript" src="script/jquery-2.2.0.js"></script>
 	<script type="text/javascript" src="script/jquery-ui.js"></script>
+	<!-- <script type='text/javascript' src='script/jquery.mousewheel.js'></script> -->
 	<script type="text/javascript" src="script/events.js"></script>
 	<script type="text/javascript" src="script/createPanel.js"></script>
 </head>
+<script>
+
+</script>
 <body>
 <div class="header">
-<h1>Biggest Soundboard in the Universe</h2>
+<span>Biggest Soundboard in the Universe</span>
 </div>
-<h2 class="demoHeaders">Audio Panels:</h2>
 
 <table id="mainTable" class="sideBarContainer sidebar">
-	<tr id="singleCol">
-		<td class="staticPanel">
-			<div class="staticPanelControls" id="panel1Controls">
-				<input class="panelName" id="panelName1" placeholder="Input Panel Name"></input>
-				<button class="newPanelButton staticPanelButton" id="newPanelButton1">+</button>
-				<button class="closePanelButton staticPanelButton" id="closePanelButton1">x</button>
+	<tr id="rowField">
+		<td class="staticPanel" id="panel-1">
+			<div class="staticPanelControls" id="panelControls-1">
+				<input class="panelName" id="panelName-1" placeholder="Name this panel..."></input>
+				<button class="leftPanelButton staticPanelButton" id="leftPanelButton-1">←</button>
+				<button class="rightPanelButton staticPanelButton" id="rightPanelButton-1">→</button>
+			  <button class="newPanelButton staticPanelButton" id="newPanelButton-1">+</button>
+				<!--<button class="closePanelButton staticPanelButton" id="closePanelButton-1">×</button> // First one shouldn't have a close-->
 			</div>
 			<div id="characterCat" class="firstSubCat">
 				<h3>Maddox</h3>
@@ -35,6 +40,14 @@
 								<li><button class="spanButton" id="m-pla"> Plastic </button></li>
 								<li><button class="spanButton" id="m-hor"> Horiscopes </button></li>
 								<li><button class="spanButton" id="m-smo"> Smoothies </button></li>
+								<li><button class="spanButton" id="m-1"> Thing </button></li>
+								<li><button class="spanButton" id="m-2"> Thing </button></li>
+								<li><button class="spanButton" id="m-3"> Thing </button></li>
+								<li><button class="spanButton" id="m-3"> Thing </button></li>
+								<li><button class="spanButton" id="m-5"> Thing </button></li>
+								<li><button class="spanButton" id="m-6"> Thing </button></li>
+								<li><button class="spanButton" id="m-7"> Thing </button></li>
+								<li><button class="spanButton" id="m-8"> Thing </button></li>
 							</ul>
 						<h3>Numbers</h3>
 							<ul>
@@ -138,6 +151,8 @@
 				</td>
 		</tr>
 	</table>
+	<div id="workstationContainer" class="workStation">
+	</div>
 </div>
 </body>
 </html>
