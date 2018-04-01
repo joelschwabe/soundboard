@@ -67,11 +67,16 @@
 	margin-top: 5px;
 	padding: 5px;
 }
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
 </style>
 <body>
 <div class="header">
 <h1>Biggest Soundboard in the Universe</h2>
 </div>
+<!--
 <h2 class="demoHeaders">Categories</h2>
 
 <div class="tab">
@@ -112,6 +117,63 @@
 
 		</div>
 </div>
+
+<table>
+  <tr id="singleCol">
+    <td id="dupeMe">
+			<h2 class="demoHeaders">Categories</h2>
+
+			<div class="tab">
+			<select class="selector" id="speakerSelect">
+			  <option disabled selected>Please Select:</option>
+			  <option value="Maddox">Maddox</option>
+			  <option value="Sean">Sean</option>
+			  <option value="Dick">Dick</option>
+			  <option value="Asterios">Asterios</option>
+			  <option value="TimChainz">TimChainz</option>
+			  <option value="PeachSaliva">PeachSaliva</option>
+			</select>
+			  <div>
+			  <select class="selector" id="wordTypeSelect" disabled=true>
+			    <option disabled selected>Please Select:</option>
+			    <option value="Noun">Noun</option>
+			    <option value="Verb">Verb</option>
+			    <option value="Adjective">Adjective</option>
+			    <option value="Adverb">Adverb</option>
+			    <option value="Pronoun">Pronoun</option>
+			    <option value="Preposition">Preposition</option>
+			    <option value="Conjunction">Conjunction</option>
+			    <option value="Determiner">Determiner</option>
+			    <option value="Exclamation">Exclamation</option>
+			  </select>
+			    <div>
+			      <select class="selector" id="toneTypeSelect" disabled=true>
+			        <option disabled selected>Please Select:</option>
+			        <option value="Sarcastic">Sarcastic</option>
+			        <option value="Serious">Serious</option>
+			        <option value="Sympathetic">Sympathetic</option>
+			        <option value="Irreverent">Irreverent</option>
+			        <option value="Playful">Playful</option>
+			        <option value="Formal">Formal</option>
+			      </select>
+			    </div>
+					<div id="soundArea" class="soundArea">
+
+					</div>
+			</div>
+
+		</td>
+  </tr>
+</table>
+-->
+
+<table id="mainTable" style="padding: 20px;
+    border: 2px solid black;
+    border-collapse: collapse;
+    margin: 10px;">
+	<tr id="singleCol">
+	</tr>
+</table>
 </div>
 </body>
 </html>
