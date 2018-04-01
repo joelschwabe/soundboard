@@ -30,8 +30,8 @@ $(document).ready(function () {
 
 	var windowWidth = $(window).width();
 	var windowHeight = $(window).height();
-	$( ".sideBarContainer" ).css("width" ,function( ) { return  "" + windowWidth * .2 + "px";});
-	$( ".sideBarContainer" ).css("height" ,function( ) { return  "" + windowHeight* .8 + "px";});
+	//$( ".sideBarContainer" ).css("width" ,function( ) { return  "" + windowWidth * .2 + "px";});
+	//$( ".sideBarContainer" ).css("height" ,function( ) { return  "" + windowHeight* .8 + "px";});
 	//$( ".firstSubCat" ).css("width" ,function( ) { return "" + windowWidth * .15 + "px";});
 	//$( ".firstSubCat" ).css("height" ,function( ) { return "" + windowHeight * .15 + "px";});
 
