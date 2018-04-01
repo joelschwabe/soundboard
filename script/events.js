@@ -42,13 +42,74 @@ $(document).ready(function () {
 			window.attachEvent("onmousewheel", scrollHorizontally);
 	}
 
+  var cloneCounter = 0;
 
 	function setClickEvents(){
 		$(".newPanelButton").unbind('click');
 		$(".rightPanelButton").unbind('click');
 		$(".leftPanelButton").unbind('click');
 		$(".closePanelButton").unbind('click');
-		$(".spanButton").unbind('click');
+		$(".spandiv").unbind('click');
+		$(".spandiv").addClass( "ui-widget-content" )
+		$(".spandiv").draggable({
+		  //addClasses: false,
+			zIndex:100,
+			containment: $('body'),
+			cursor: 'move',          // sets the cursor apperance
+			revert: 'invalid',       // makes the item to return if it isn't placed into droppable
+			revertDuration: 900,     // duration while the item returns to its place
+			opacity: 0.35,            // opacity while the element is dragged
+			helper: 'clone',
+			stop: function (ev, ui) {
+				/*
+					 var pos = $(ui.helper).offset();
+					 objName = "#clonediv" + cloneCounter;
+					 $(objName).css({
+							 "left": pos.left,
+							 "top": pos.top
+					 });
+					 $(objName).removeClass("drag");
+					 //When an existiung object is dragged
+					 $(objName).draggable({
+							 containment: 'parent',
+							 stop: function (ev, ui) {
+									 var pos = $(ui.helper).offset();
+									 console.log($(this).attr("id"));
+									 console.log(pos.left)
+									 console.log(pos.top)
+							 }
+					 });
+
+					 */
+			 }
+		});
+		$("#workstationContainer").droppable({
+		  //accept: ".spandiv",
+			drop: function(ev,ui) {
+				/*
+				$.ui.ddmanager.current.cancelHelperRemoval = false;
+							 cloneCounter++;
+							 var element = $(ui.draggable).clone();
+							 element.addClass("tempclass");
+							 $(this).append(element);
+							 $(".tempclass").attr("id", "clonediv" + cloneCounter);
+							 $("#clonediv" + counter).removeClass("tempclass");
+							 //Get the dynamically item id
+							 draggedNumber = ui.helper.attr('id').search(/drag([0-9])/)
+							 itemDragged = "dragged" + RegExp.$1
+							 console.log(itemDragged)
+							 $("#clonediv" + counter).addClass(itemDragged);
+				*/
+				var newBut = ui.helper[0];
+				newBut.style="";
+				this.append(newBut);
+
+				console.log(ui);
+				console.log(ev);
+				console.log(this);
+				console.log("was dropped");
+			}
+		});
 
 		$(".newPanelButton").click(function(){
 				var rowField = $("#rowField");

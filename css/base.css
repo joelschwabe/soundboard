@@ -87,7 +87,7 @@ select {
 	margin-top: 50px;
 }
 .firstSubCat{
-	width: 300px;s
+	width: 300px;
 }
 
 .staticPanel{
@@ -121,13 +121,12 @@ ul{
  	-webkit-padding-start: 0 !important;
  }
 .secondSubCat{
-
 }
-.spanButton{
+.spandiv{
 	border: 4px outset orange;
 	font-weight: bold;
 	padding: 8px;
-	width: 100%;
+	width: 200px;
 	text-align: center;
 }
 .workStation{
