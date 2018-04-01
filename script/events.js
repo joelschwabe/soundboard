@@ -124,11 +124,12 @@ $(document).ready(function () {
 			  var idNum = this.id.split("-")[1];
 				var thisPanel = $("#panel-"+idNum);
 				var nextPanel = thisPanel.next();
-
-				var thisCopy = thisPanel.clone(true,true);
-				nextPanel.after(thisCopy);
-				thisPanel.remove();
-				setClickEvents();
+				if(nextPanel.length >0){
+					var thisCopy = thisPanel.clone(true,true);
+					nextPanel.after(thisCopy);
+					thisPanel.remove();
+					setClickEvents();
+			  }
 			}
 		);
 
@@ -137,11 +138,12 @@ $(document).ready(function () {
 				var idNum = this.id.split("-")[1];
 				var thisPanel = $("#panel-"+idNum);
 				var prevPanel = thisPanel.prev();
-
-				var thisCopy = thisPanel.clone(true,true);
-				prevPanel.before(thisCopy);
-				thisPanel.remove();
-				setClickEvents();
+				if(prevPanel.length >0){
+					var thisCopy = thisPanel.clone(true,true);
+					prevPanel.before(thisCopy);
+					thisPanel.remove();
+					setClickEvents();
+			  }
 			}
 		);
 
