@@ -89,6 +89,7 @@ $(document).ready(function () {
 		);
 
 		$(".closePanelButton").click(function(){
+				var rowField = $("#rowField");
 				var panelNum = rowField.children().length;
 				if(panelNum >0){
 					this.parentElement.parentElement.remove();
