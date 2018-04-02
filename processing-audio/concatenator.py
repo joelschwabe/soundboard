@@ -46,7 +46,7 @@ for i in xrange(len(artists)):
 			artistNames.append(ele)
 			artistClips.append(AudioSegment.from_mp3(audioFolder+ele))
 			if volNorm:
-				matchTargAmp(artistClips[count], -20)
+				artistClips[count] = matchTargAmp(artistClips[count],-20)
 			artistLengths.append(artistClips[count].duration_seconds)
 			# strip filename down to words/phrase
 			artistWords.append(
