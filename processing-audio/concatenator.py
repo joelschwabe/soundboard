@@ -7,6 +7,12 @@ audioFolder = '/home/geoff/code/soundboard/audio/'
 # if no output folder exists, make one
 if not os.path.exists(audioFolder+'processed/'):
 	os.makedirs(audioFolder+'processed/')
+
+# volume normalizer function 
+def matchTargAmp(sound, target_dBFS):
+    change_in_dBFS = target_dBFS - sound.dBFS
+    return sound.apply_gain(change_in_dBFS)
+volNorm = 1 # volume normalization is on, target all clips to same dB
 	
 artists = ['maddox', 'dick', 'sean', 'asterios', 'tim']
 names = range(len(artists)) # full filenames
@@ -35,12 +41,12 @@ for i in xrange(len(artists)):
 	artistStarts = starts[i]
 	artistLengths = lengths[i]
 	
-	usedIndices = [] # mark indices of used elements for removal
-	print len(fileList)
 	for ele in reversed(fileList): # go backwards to allow pruning
 		if artists[i] in ele[0:len(artists[i])]:
 			artistNames.append(ele)
 			artistClips.append(AudioSegment.from_mp3(audioFolder+ele))
+			if volNorm:
+				matchTargAmp(artistClips[count], -20)
 			artistLengths.append(artistClips[count].duration_seconds)
 			# strip filename down to words/phrase
 			artistWords.append(
@@ -52,7 +58,6 @@ for i in xrange(len(artists)):
 			else:
 				artistCombo += artistClips[count]
 				artistStarts.append(artistCombo.duration_seconds)
-			usedIndices.append(count)
 			# prune current file from list
 			fileList.remove(artistNames[count])
 			count += 1
@@ -60,9 +65,12 @@ for i in xrange(len(artists)):
 	# save cobbled files
 	artistCombo.export(audioFolder+'processed/'+artists[i]+'Combo.mp3',format="mp3")
 	
-	# save data WIP WIP WIP
+	# save data 
 	fname = artists[i] + 'Data.dat'
 	newFile = open(audioFolder + 'processed/' + fname,'w')
-	for i in xrange(len(names)):
-		newFile.write(str(names[i])+'\t'+str(starts[i])+'\n')
+	newFile.write('fileName\twords\tstart\tlength\n')
+	for i in xrange(len(artistNames)):
+		newFile.write(str(artistNames[i])+'\t'+str(artistWords[i])+'\t')
+		newFile.write(str(artistStarts[i])+'\t'+str(artistLengths[i]))
+		newFile.write('\n')
 	newFile.close()
