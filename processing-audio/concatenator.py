@@ -16,7 +16,9 @@ volNorm = 1 # volume normalization is on, target all clips to same dB
 	
 artists = ['maddox', 'dick', 'sean', 'asterios', 'tim']
 names = range(len(artists)) # full filenames
+epNums =range(len(artists)) # episode numbers
 words = range(len(artists)) # word/phrases spoken in clip
+types = range(len(artists)) # type of word(s) spoken
 clips = range(len(artists)) # audio clips
 combos = range(len(artists)) # artist clip aggregates
 starts = range(len(artists)) # start times of clips in clip aggregates
@@ -29,29 +31,38 @@ for i in xrange(len(artists)):
 	count = 0 # index of files for current artist 
 	# start with empty lists
 	names[i] = []
+	epNums[i] = []
 	words[i] = []
+	types[i] = []
 	clips[i] = []
 	combos[i] = []
 	starts[i] = []
 	lengths[i] = []
 	artistNames = names[i]
+	artistEpNums = epNums[i]
 	artistWords = words[i]
+	artistTypes = types[i]
 	artistClips = clips[i]
 	artistCombo = combos[i]
 	artistStarts = starts[i]
 	artistLengths = lengths[i]
 	
+	# WIP instead of throwing away episodes, save those too
+	
 	for ele in reversed(fileList): # go backwards to allow pruning
 		if artists[i] in ele[0:len(artists[i])]:
 			artistNames.append(ele)
 			artistClips.append(AudioSegment.from_mp3(audioFolder+ele))
-			if volNorm:
+			if volNorm: # normalize volume to manually set dB amplitude
 				artistClips[count]= matchTargAmp(artistClips[count],-20)
 			artistLengths.append(artistClips[count].duration_seconds)
-			# strip filename down to words/phrase
-			artistWords.append(
-				ele.replace(artists[i],'').replace('-','')
-				.replace('.mp3','').translate(None,digits))
+			# break up fileName using - delimiters
+			# indices: 0:artist; 1:epNo; 2:words; 3:wordType
+			broken = ele.replace('.mp3','').split('-')
+			artistEpNums.append(broken[1])
+			artistWords.append(broken[2].replace('_',' '))
+			if len(broken) > 3:
+				artistTypes.append(broken[3])
 			if not count:
 				artistCombo = artistClips[count]
 				artistStarts.append(0)
@@ -59,13 +70,15 @@ for i in xrange(len(artists)):
 				artistCombo += artistClips[count]
 				artistStarts.append(artistCombo.duration_seconds)
 			# prune current file from list
-			fileList.remove(artistNames[count])
+			fileList.remove(ele)
 			count += 1
 
 	# save cobbled files
 	artistCombo.export(
 		audioFolder+'processed/'+artists[i]+'Combo.mp3',format="mp3")
 	
+	# WIP save to a file called clips.json with the format in discord
+	 
 	# save data,first line is column headers
 	fname = artists[i] + 'Data.dat'
 	newFile = open(audioFolder + 'processed/' + fname,'w')
