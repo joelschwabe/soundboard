@@ -46,7 +46,7 @@ for i in xrange(len(artists)):
 			artistNames.append(ele)
 			artistClips.append(AudioSegment.from_mp3(audioFolder+ele))
 			if volNorm:
-				artistClips[count] = matchTargAmp(artistClips[count],-20)
+				artistClips[count]= matchTargAmp(artistClips[count],-20)
 			artistLengths.append(artistClips[count].duration_seconds)
 			# strip filename down to words/phrase
 			artistWords.append(
@@ -63,9 +63,10 @@ for i in xrange(len(artists)):
 			count += 1
 
 	# save cobbled files
-	artistCombo.export(audioFolder+'processed/'+artists[i]+'Combo.mp3',format="mp3")
+	artistCombo.export(
+		audioFolder+'processed/'+artists[i]+'Combo.mp3',format="mp3")
 	
-	# save data 
+	# save data,first line is column headers
 	fname = artists[i] + 'Data.dat'
 	newFile = open(audioFolder + 'processed/' + fname,'w')
 	newFile.write('fileName\twords\tstart\tlength\n')
