@@ -26,6 +26,10 @@ combos = range(len(artists)) # artist clip aggregates
 starts = range(len(artists)) # start times of clips in clip aggregates
 lengths = range(len(artists)) # length of individual clips
 
+artistOutputs = range(len(artists))
+for i in xrange(len(artistOutputs)):
+  artistOutputs[i] = artists[i] + 'Combo.mp3'
+  
 # returns list of all file names in dir
 fileList = os.listdir(audioFolder) 
 
@@ -80,7 +84,7 @@ for i in xrange(len(artists)):
 
   # save cobbled files
   artistCombo.export(
-    audioFolder+'processed/'+artists[i]+'Combo.mp3',format="mp3")
+    audioFolder+'processed/'+artistOutputs[i],format="mp3")
    
   # save data in plain text (file for each artist)
   # first line is column headers
@@ -113,7 +117,7 @@ for i in xrange(len(artists)):
     newFile.write('", episode: "'+ str(artEpNums[j]) +'", words: "')
     newFile.write(artWords[j] +'", typeOfWord: "'+artTypes[j])
     newFile.write('", startTime: '+ str(artStarts[j]) + ', length: ')
-    newFile.write(str(artLengths[j])+', fileName: "'+artNames[j])
+    newFile.write(str(artLengths[j])+', fileName: "'+artistOutputs[i])
     newFile.write('" },\n')
 newFile.write(']')
 newFile.close()
