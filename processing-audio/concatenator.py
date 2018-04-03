@@ -1,3 +1,5 @@
+#!/bin/env python2.7
+
 import os.path # make folders for file output
 from pydub import AudioSegment
 from string import digits
