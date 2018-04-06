@@ -1,14 +1,24 @@
 #!/bin/env python2.7
 
-import os.path # make folders for file output
+import os # get directories, make folders for file output
+import platform
 from pydub import AudioSegment
 from string import digits
 import uuid
 
-audioFolder = '/home/geoff/code/soundboard/audio/'
+opsys = platform.platform()
+if opsys == 'Linux':
+  sl = '/'
+elif opsys == 'Windows':
+  sl = '\\'
+
+# path setups
+parDir = os.path.dirname(os.getcwd()) # get soundboard directory
+audioFolder = parDir + sl + audio
+processedFolder = audioFolder + 'processed' + sl
 # if no output folder exists, make one
-if not os.path.exists(audioFolder+'processed/'):
-  os.makedirs(audioFolder+'processed/')
+if not os.path.exists(processedFolder):
+  os.makedirs(processedFolder)
 
 # volume normalizer function 
 def matchTargAmp(sound, target_dBFS):
@@ -84,12 +94,12 @@ for i in xrange(len(artists)):
 
   # save cobbled files
   artistCombo.export(
-    audioFolder+'processed/'+artistOutputs[i],format="mp3")
+    processedFolder+artistOutputs[i],format="mp3")
    
   # save data in plain text (file for each artist)
   # first line is column headers
   fname = artists[i] + 'Data.dat'
-  newFile = open(audioFolder + 'processed/' + fname,'w')
+  newFile = open(processedFolder + fname,'w')
   newFile.write('fileName\twords\tstart\tlength\n')
   for i in xrange(len(artistNames)):
     newFile.write(artistNames[i] + '\t' + artistWords[i] + '\t')
@@ -99,7 +109,7 @@ for i in xrange(len(artists)):
 
 # WIP save to a file called clips.json with the format in discord
 fname = 'clips.json'
-newFile = open(audioFolder + 'processed/' + fname,'w')
+newFile = open(processedFolder + fname,'w')
 newFile.write('[\n')
 for i in xrange(len(artists)):
   artNames = names[i]
