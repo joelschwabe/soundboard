@@ -6,7 +6,7 @@ from pydub import AudioSegment
 from string import digits
 import uuid
 
-opsys = platform.platform()
+opsys = platform.system()
 if opsys == 'Linux':
   sl = '/'
 elif opsys == 'Windows':
@@ -14,7 +14,7 @@ elif opsys == 'Windows':
 
 # path setups
 parDir = os.path.dirname(os.getcwd()) # get soundboard directory
-audioFolder = parDir + sl + audio
+audioFolder = parDir + sl + 'audio' + sl
 processedFolder = audioFolder + 'processed' + sl
 # if no output folder exists, make one
 if not os.path.exists(processedFolder):
