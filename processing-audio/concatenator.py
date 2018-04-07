@@ -3,7 +3,6 @@
 import os # get directories, make folders for file output
 import platform
 from pydub import AudioSegment
-from string import digits
 import uuid
 
 opsys = platform.system()
@@ -62,8 +61,6 @@ for i in xrange(len(artists)):
   artistCombo = combos[i]
   artistStarts = starts[i]
   artistLengths = lengths[i]
-	
-	# WIP instead of throwing away episodes, save those too
 	
   for ele in reversed(fileList): # go backwards to allow pruning
     if artists[i] in ele[0:len(artists[i])]:
