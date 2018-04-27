@@ -120,11 +120,11 @@ for i in xrange(len(artists)):
   for j in xrange(len(artNames)):
     # make a UUID using a SHA-1 hash of a namespace UUID and a name
     hashid = uuid.uuid5(uuid.NAMESPACE_DNS, artNames[j])
-    newFile.write(' { id: "'+str(hashid)+'", artist: "'+ artists[i])
-    newFile.write('", episode: "'+ str(artEpNums[j]) +'", words: "')
-    newFile.write(artWords[j] +'", typeOfWord: "'+artTypes[j])
-    newFile.write('", startTime: '+ str(artStarts[j]) + ', length: ')
-    newFile.write(str(artLengths[j])+', fileName: "'+artistOutputs[i])
+    newFile.write(' { "id": "'+str(hashid)+'", "artist": "'+ artists[i])
+    newFile.write('", "episode": "'+ str(artEpNums[j]) +'", "words": "')
+    newFile.write(artWords[j] +'", "typeOfWord": "'+artTypes[j])
+    newFile.write('", "startTime": '+ str(artStarts[j]) + ', "length": ')
+    newFile.write(str(artLengths[j])+', "fileName": "'+artistOutputs[i])
     newFile.write('" },\n')
 newFile.write(']')
 newFile.close()

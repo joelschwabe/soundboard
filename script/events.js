@@ -23,8 +23,7 @@ $(document).ready(function () {
 		A_WasteFood = new Audio('audio/maddox-91-wastingFood.mp3'),
 		A_LockedOut = new Audio('audio/maddox-77-momLockedMeOut.mp3')
   ;
-
-
+  
 	function scrollHorizontally(e) {
 			e = window.event || e;
 			var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
